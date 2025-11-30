@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>🛒 Ваш Кошик</h1>
+
+    {% if cart_items %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Товар</th>
+                    <th>Ціна</th>
+                    <th>Кількість</th>
+                    <th>Сума</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>${{ item.product.price | round(2) }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>${{ item.subtotal | round(2) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" style="text-align: right; font-weight: bold;">Загальна Сума:</td>
+                    <td><strong style="font-size: 1.2em;">${{ total | round(2) }}</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div style="text-align: right; margin-top: 20px;">
+            {% if current_user.is_authenticated %}
+                <form method="POST" action="{{ url_for('shop.checkout') }}">
+                    <button type="submit" style="background-color: #28a745; padding: 10px 20px;">Оформити Замовлення</button>
+                </form>
+            {% else %}
+                <p>Будь ласка, <a href="{{ url_for('auth.login', next=url_for('shop.cart')) }}">увійдіть</a> або <a href="{{ url_for('auth.register') }}">зареєструйтеся</a>, щоб оформити замовлення.</p>
+                <button disabled style="background-color: #aaa; padding: 10px 20px;">Оформити Замовлення</button>
+            {% endif %}
+        </div>
+    {% else %}
+        <p>Ваш кошик порожній. Перейдіть до <a href="{{ url_for('shop.shop_index') }}">магазину</a>, щоб додати товари.</p>
+    {% endif %}
+{% endblock %}

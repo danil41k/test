@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Залишити Відгук</h1>
+    <div class="form-container" style="max-width: 600px;">
+        <form method="POST">
+            <h2><label for="author"; style="margin-left: 15px; text-align: center;">Ваше Ім'я:</label></h2>
+            <input type="text" id="author" name="author" required value="{% if current_user.is_authenticated %}{{ current_user.username }}{% endif %};" style="margin-left: 50px;">
+            <br>
+            <h2 style="margin-top: 40px;"><label for="text">Текст Відгуку:</label></h2>
+            <br>
+            <textarea id="text" name="text" rows="5" required style="margin-left: 50px;"></textarea>
+            <br>
+            <button type="submit" style="margin-top: 40px;">Надіслати Відгук</button>
+        </form>
+    </div>
+
+    <h3 style="margin-top: 40px;">Останні Відгуки</h3>
+    {% for feedback in feedbacks %}
+    <div style="border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; border-radius: 5px;">
+        <p><strong>{{ feedback.author }}</strong> ({{ feedback.date_posted.strftime('%Y-%m-%d') }})</p>
+        <p>{{ feedback.text }}</p>
+    </div>
+    {% endfor %}
+{% endblock %}

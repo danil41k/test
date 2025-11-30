@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title >TechStore - {{ title }}</title>
+
+    <style>
+       /* ======== ГОЛОВНІ НАЛАШТУВАННЯ ======== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: linear-gradient(135deg, #0f0f0f, #1a1f35, #0a0f24);
+    min-height: 100vh;
+    color: #e9ecf2;
+    margin-left: 30px;
+}
+
+/* Контейнер */
+.container {
+    width: min(1200px, 92%);
+    margin: 0 auto;
+}
+
+/* ======== GLASS-MORPH BLOCK ======== */
+.glass {
+    background: rgba(78, 82, 78, 0.381);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 18px;
+    border: 1px solid rgb(0, 0, 0);
+
+    box-shadow: 0 0 10px rgba(224, 0, 190, 0.45);
+    padding: 17px;
+    margin-bottom: 20px;
+
+    animation: fadeIn 0.3s ease;
+}
+
+
+
+/* Анімація появи */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ======== ТЕКСТ ======== */
+h1, h2, h3 {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-left: 30px;
+}
+/* ======== НОВИЙ КЛАС: АКЦЕНТОВАНИЙ ТЕКСТ ======== */
+.accent-text {
+    color: #6bbdff; /* Світло-блакитний колір, який ви використовуєте для hover */
+    font-weight: 700; /* Жирний шрифт, щоб виділити слово */
+    text-shadow: 0 0 5px rgba(0, 150, 255, 0.5); /* Легке неонове світіння */
+}
+
+h1 { 
+    font-size: 3.6rem; 
+    margin-left: -15px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(0,150,255,0.6);
+}
+
+h2 { 
+    font-size: 2rem; 
+    margin-bottom: 10px; 
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: #dce1eb;
+}
+
+/* ======== СПИСОК ======== */
+ul {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+li {
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+/* ======== КНОПКИ ======== */
+button, .btn {
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: rgba(0, 150, 255, 0.25);
+    border: 1px solid rgba(0,150,255,0.4);
+    color: #e9f0ff;
+    cursor: pointer;
+    font-size: 1rem;
+    backdrop-filter: blur(8px);
+    transition: 0.25s ease;
+}
+
+button:hover, .btn:hover {
+    background: rgba(0, 255, 128, 0.45);
+    box-shadow: 0 0 12px rgba(0,150,255,0.7);
+}
+
+
+.btn-shift {
+    /* ... інші стилі кнопки ... */
+    background-color: transparent;
+    border: 1px solid #00000000;
+    position: relative;
+    overflow: hidden; /* Приховуємо частину псевдоелемента */
+    z-index: 1;
+}
+.btn-shift::before {
+    content: '';
+    background: #ff00d4;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0; /* Починаємо з нульової ширини */
+    height: 100%;
+    z-index: -1;
+    transition: width 0.1s ease;
+}
+.btn-shift:hover::before {
+    width: 100%; /* Заповнюємо повністю */
+}
+
+
+
+
+/* ======== HEADER ======== */
+header {
+    padding: 15px 0;
+    margin-bottom: 30px;
+}
+
+.nav-glass {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+
+    border-radius: 16px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(12px);
+}
+
+nav a {
+    margin-left: 20px;
+    font-size: 1.05rem;
+    color: #e8ecff;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.glass {  
+    /* ДОДАЄМО: Плавний перехід для transform і box-shadow */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.glass:hover {
+    /* Підняття елемента вгору */
+    transform: translateY(-8px); 
+    /* Посилюємо тінь, щоб підкреслити "підйом" */
+    box-shadow: 0 15px 40px rgb(0, 255, 34); 
+}
+
+
+
+
+button, .spec {
+    /* ДОДАЄМО: Плавний перехід для ефектів */
+    transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+button:hover, .spec:hover {
+    /* ... ваші поточні стилі hover ... */
+    
+    /* Додатково посилюємо світіння і робимо рамку яскравішою */
+    background: rgb(255, 255, 255);
+    border-color: #000000; /* Яскравий колір рамки */
+    box-shadow: 0 0 18px rgba(0,150,255,0.9); /* Сильніше неонове світіння */
+    animation: shake 3s ease-in-out 100;
+}
+
+
+
+
+
+
+nav a:hover {
+    color: #6bbdff;
+}
+
+/* ======== FOOTER ======== */
+footer {
+    text-align: center;
+    padding: 12px;
+    margin-top: 40px;
+    color: #b4bbce;
+}
+
+.my-alert-icon {
+    /* Підключаємо анімацію 'shake' */
+    animation-name: shake;
+    
+    /* Тривалість анімації (наприклад, 0.5 секунди) */
+    animation-duration: 0.5s;
+    
+    /* Функція плавності (краще виглядає при трясінні) */
+    animation-timing-function: ease-in-out;
+    
+    /* Кількість повторів (1 раз) */
+    animation-iteration-count: 5;
+}
+
+/*Трясіння кнопки */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; }
+    .nav-glass { flex-direction: column; gap: 10px; }
+}
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h2><a href="{{ url_for('main.home') }}" style="color: white; text-decoration: none;"><span class="footer">TechStore</span></a></h2>
+        <nav style="margin-top: 20;">
+            <a href="{{ url_for('main.home') }}"> <span class="btn-shift"><span class="glass">Головна</span></span></a>
+            <a href="{{ url_for('main.about') }}"> <span class="btn-shift"><span class="glass">Про нас</span></span></a>
+            <a href="{{ url_for('shop.shop_index') }}"> <span class="btn-shift"><span class="glass">Магазин</span></span></a>
+            <a href="{{ url_for('shop.submit_feedback') }}"> <span class="btn-shift"><span class="glass">Відгуки</span></span></a>
+
+            {% if current_user.is_authenticated %}
+                {% if current_user.role == 'admin' %}
+                    <a href="{{ url_for('admin.dashboard') }}" style="background-color: #FFC107; color: black;"> <span class="btn-shift"><span class="glass">🧑‍💻 Адмін-панель</span></span></a>
+                {% else %}
+                    <a href="{{ url_for('shop.order_history') }}">📜 Замовлення</a>
+                {% endif %}
+                <a href="{{ url_for('auth.logout') }}">Вихід ({{ current_user.username }})</a>
+            {% else %}
+                <a href="{{ url_for('auth.login') }}">Вхід</a>
+                <a href="{{ url_for('auth.register') }}">Реєстрація</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Проєкт "Магазин TechStore"</p>
+    </footer>
+</body>
+</html>

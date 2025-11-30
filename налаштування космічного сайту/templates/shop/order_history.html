@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>📜 Історія Моїх Замовлень</h1>
+    
+    {% if orders %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Замовлення</th>
+                    <th>Дата</th>
+                    <th>Статус</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>#{{ order.id }}</td>
+                    <td>{{ order.order_date.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td><span style="font-weight: bold; color: {% if order.status == 'Completed' %}green{% elif order.status == 'Canceled' %}red{% else %}orange{% endif %};">{{ order.status }}</span></td>
+                    <td>
+                        <button disabled style="background-color: #aaa;">Деталі</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Ви ще не робили замовлень у нашому магазині. Ознайомтеся з <a href="{{ url_for('shop.shop_index') }}">нашим асортиментом</a>!</p>
+    {% endif %}
+{% endblock %}

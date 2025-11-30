@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Магазин комплектуючих🌌</h1>
+    <p>Оберіть товар який буде добавлений до вашої корзини</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;">
+        {% for product in products %}
+        <div style="border: 1px solid #ccc; padding: 15px; border-radius: 8px; background-color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <h2>{{ product.name }}</h2>
+            <p>{{ product.description }}</p>
+            <p><strong>Ціна: ${{ product.price | round(2) }}</strong></p>
+            <p style="color: {% if product.stock > 0 %}green{% else %}red{% endif %};">На складі: {{ product.stock }}</p>
+            <button {% if product.stock == 0 %}disabled{% endif %}>Додати до кошика</button>
+            
+            {% if current_user.is_authenticated and current_user.role == 'admin' %}
+                <a href="{{ url_for('admin.manage_products') }}" style="float: right; text-decoration: none; color: #007bff;">(Редагувати)</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

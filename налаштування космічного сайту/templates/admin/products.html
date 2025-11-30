@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>💰 Керування Товарами</h1>
+    
+    <a href="#"><button style="background-color: #008000; margin-bottom: 20px;">Додати Новий Товар</button></a>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Назва</th>
+                <th>Ціна ($)</th>
+                <th>На складі</th>
+                <th>Дія</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price | round(2) }}</td>
+                <td>{{ product.stock }}</td>
+                <td>
+                    <a href="#"><button style="background-color: #007bff; padding: 5px 10px;">Редагувати</button></a>
+                    <form method="POST" action="#" style="display: inline;">
+                        <button type="submit" onclick="return confirm('Видалити {{ product.name }}?')" style="background-color: #cc0000; padding: 5px 10px;">Видалити</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
